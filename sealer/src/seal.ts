@@ -140,8 +140,8 @@ if (!validRound) {
     showRolling(Math.floor(Math.random() * 1000)); // 보여 주기용(정해지는 값이 아니다)
     requestAnimationFrame(roll);
   };
-  /** Stop: 잠깐 느려지다가 target 에 멈춘다(약 0.6초). */
-  const land = (target: number) =>
+  /** Stop: 잠깐 느려지다가 멈춘다(약 0.6초). 멈출 숫자는 부르는 쪽이 이미 정했다(uniformSpin) — 여기는 보여 주기만. */
+  const land = () =>
     new Promise<void>((resolve) => {
       const delays = [40, 50, 60, 75, 90, 110, 140];
       let i = 0;
@@ -173,7 +173,7 @@ if (!validRound) {
     rolling = false;
     spinBtn.disabled = true;
     const target = uniformSpin();
-    await land(target);
+    await land();
     input.value = pad3(target);
     input.disabled = false;
     spinBtn.disabled = false;
