@@ -1,0 +1,27 @@
+{
+  "name": "qoropick-open",
+  "private": true,
+  "type": "module",
+  "description": "qoropick's public parts: the Sealer page that locks your secret number, the offline verifier, and the rules library the app runs.",
+  "scripts": {
+    "dev": "vite --config sealer/vite.config.mts",
+    "build": "vite build --config sealer/vite.config.mts",
+    "test": "vitest run",
+    "test:live": "vitest run src/lib/seal.live.test.ts",
+    "verify": "tsx scripts/verify.ts"
+  },
+  "dependencies": {
+    "@noble/curves": "^1.9.7",
+    "@noble/hashes": "^1.8.0",
+    "buffer": "^6.0.3",
+    "tlock-js": "0.9.0",
+    "viem": "^2.56.9"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.4",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3",
+    "vite": "^8.3.1",
+    "vitest": "^3.2.7"
+  }
+}

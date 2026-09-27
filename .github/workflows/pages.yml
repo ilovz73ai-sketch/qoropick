@@ -1,0 +1,41 @@
+# 테스트 → Sealer 빌드 → GitHub Pages. 배포본 푸터의 커밋 해시가 이 저장소의 커밋과 같다.
+name: Sealer on GitHub Pages
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+        env:
+          VITE_APP_URL: https://pick.qoro.ooo
+          VITE_ALLOWED_RETURNS: https://pick.qoro.ooo/,https://world.org/mini-app?app_id=app_2fd00ecae346c3bfbf796967b2798a3a&,https://worldcoin.org/mini-app?app_id=app_2fd00ecae346c3bfbf796967b2798a3a&
+          VITE_RPC_URL: https://worldchain-mainnet.g.alchemy.com/public
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: sealer/dist
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
