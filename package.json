@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "description": "qoropick's public parts: the Sealer page that locks your secret number, the offline verifier, and the rules library the app runs.",
+  "license": "MIT",
   "scripts": {
     "dev": "vite --config sealer/vite.config.mts",
     "build": "vite build --config sealer/vite.config.mts",

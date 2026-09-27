@@ -25,6 +25,13 @@ b { color: var(--ink); }
 /* 폭만 정하고 높이는 aspect-ratio 가 낸다(height 를 같이 적으면 aspect-ratio 가 무시된다). 320px 폰에서도 세 칸이 카드 안에 든다. */
 .digit { width: clamp(58px, 19vw, 80px); aspect-ratio: 3 / 4; border-radius: 18px; background: var(--card-2); display: flex; align-items: center; justify-content: center; font: 800 clamp(46px, 15vw, 66px)/1 -apple-system, system-ui, sans-serif; font-variant-numeric: tabular-nums; }
 .digit.done { background: var(--accent-700); color: #fff; }
+/* 세 칸 위에 투명한 입력칸 하나 — 칸을 누르면 숫자 키패드가 뜬다. 16px 미만이면 iOS 가 확대해 버린다. */
+.reel-wrap { position: relative; }
+.reel-input { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; font-size: 16px; border: 0; padding: 0; cursor: text; }
+.reel-input:disabled { cursor: default; }
+.digit.empty { color: var(--ink-3); }
+/* 입력 중: 다음에 채워질 칸에 테두리 — 커서가 안 보이는 대신. */
+.reel-wrap:focus-within .digit.next { box-shadow: inset 0 0 0 3px var(--accent-700); }
 input.num { width: 100%; font-size: 22px; font-weight: 700; text-align: center; padding: 12px; border: 1px solid var(--line); border-radius: 14px; font-variant-numeric: tabular-nums; }
 textarea { width: 100%; height: 140px; font: 11.5px/1.45 var(--mono); padding: 10px; border: 1px solid var(--line); border-radius: 12px; background: var(--card-2); resize: none; }
 .fp { font: 700 15px var(--mono); background: var(--sunk); padding: 2px 8px; border-radius: 8px; white-space: nowrap; }

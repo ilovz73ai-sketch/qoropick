@@ -31,3 +31,7 @@ npm run verify -- https://pick.qoro.ooo/api/rounds/<id>/bundle
 The drand network, World Chain block times, that the operator actually sends the shares (every payment is public on-chain),
 that the operator's server enforces the per-person ticket limit, this page's code if you use it instead of drand's Timevault,
 and that the server stores the lock you pasted — check that on the Sealer's **Check my lock** page.
+
+## License
+
+MIT — see [LICENSE](LICENSE).
